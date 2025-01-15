@@ -10,9 +10,7 @@ function Cart() {
   const removeFromCart = (id) => {
     dispatch(remove(id)); // Dispatching the ID to the Redux action
   };
-  console.log("&&&&&",products)
-  console.log("Redux state:", useSelector((state) => state));
-
+  
   
 
   const cards = products.map((product) => (

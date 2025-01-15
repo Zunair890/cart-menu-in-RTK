@@ -17,7 +17,7 @@ function Product() {
   const addToCart=(product)=>{
        dispatch(add(product));
   }
-  console.log(">>>>>>>>>>>>>>>>>>>>>", products)
+  
 
 
 

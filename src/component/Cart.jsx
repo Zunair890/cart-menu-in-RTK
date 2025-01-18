@@ -10,23 +10,21 @@ function Cart() {
   const removeFromCart = (id) => {
     dispatch(remove(id)); // Dispatching the ID to the Redux action
   };
-  
-  
 
   const cards = products.map((product) => (
-    <div className="col-md-12" key={product}> {/* Use product.id as the key */}
+    <div className="col-md-12" key={product.id}> {/* Use unique `product.id` */}
       <Card style={{ width: '18rem', margin: '10px' }}>
         <div className="self-center p-3">
           <Card.Img
             variant="top"
-            src={product} // Ensure `product.image` exists
-            alt={product} // Ensure `product.name` exists
+            src={product.image} // Access the correct property
+            alt={product.name} // Access the correct property
             style={{ width: "180px", height: "200px" }}
           />
         </div>
         <Card.Body>
-          <Card.Title>{product}</Card.Title>
-          <Card.Text>Price: ${product}</Card.Text> {/* Assuming price exists */}
+          <Card.Title>{product.name}</Card.Title> {/* Access the correct property */}
+          <Card.Text>Price: ${product.price}</Card.Text> {/* Access the correct property */}
         </Card.Body>
         <Card.Footer className="flex items-center justify-center">
           <Button variant="danger" onClick={() => removeFromCart(product.id)}>
@@ -37,10 +35,7 @@ function Cart() {
     </div>
   ));
 
-  return <div className="row">{cards}
-  {JSON.stringify("tfyuj",products)}
-  
-  </div>;
+  return <div className="row">{cards}</div>;
 }
 
 export default Cart;

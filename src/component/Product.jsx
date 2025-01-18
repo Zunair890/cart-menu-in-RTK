@@ -1,18 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Alert from 'react-bootstrap/Alert';
 import { useDispatch } from "react-redux";
 import { add } from "../features/cartSlice";
+import { getProducts } from "../features/ProductSlice";
+import { useSelector } from "react-redux";
 function Product() {
     const dispatch=useDispatch();
-    const [products, setProducts] = useState([]);
-
-    // Fetch data only once when the component mounts
+   const {data: products,status}= useSelector(state=>state.products)
+    // dispatch an action for fetchProducts
     useEffect(() => {
-        fetch("https://fakestoreapi.com/products")
-            .then(data => data.json())
-            .then(result => setProducts(result));
-    }, []); // Dependency array to prevent infinite calls
+       dispatch(getProducts());
+
+
+    }, []);
+    if(status==="Loading"){
+        return <p className="text-center">Loading...</p>
+    } 
+    if(status==="error"){
+        return <Alert key="danger" variant="danger" className="text-center">Something went wrong! Try again later</Alert>
+    }
 
   const addToCart=(product)=>{
        dispatch(add(product));

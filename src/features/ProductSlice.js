@@ -24,7 +24,7 @@ export const ProductSlice = createSlice({
         state.status="idle";
     })
     .addCase(getProducts.rejected, (state)=>{
-        state.status="error"
+        state.status="error";
     })
     }
 });
